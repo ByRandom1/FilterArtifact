@@ -76,15 +76,15 @@ class Artifact(object):
             new_name = '追忆之注连'
         elif name == 'emblemOfSeveredFate':
             new_name = '绝缘之旗印'
-        elif name == 'Husk of Opulent Dreams':  # ?
+        elif name == 'huskOfOpulentDreams':
             new_name = '华馆梦醒形骸记'
-        elif name == 'Ocean-Hued Clam':  # ?
+        elif name == 'oceanHuedClam':
             new_name = '海染砗磲'
         elif name == 'VermillionHereafter':
             new_name = '辰砂往生录'
         elif name == 'EchoesOfAnOffering':
             new_name = '来歆余响'
-        elif name == 'Deepwood Memories':  # ?
+        elif name == 'DeepwoodMemories':
             new_name = '深林的记忆'
         elif name == 'GildedDreams':
             new_name = '饰金之梦'
@@ -305,6 +305,11 @@ class Artifact(object):
 
     def simple_judge(self):
         base = 0
+        if self.main_type == 'hp%':
+            self.atk_num = -self.atk_num
+        if self.main_type == 'atk%':
+            self.life_num = -self.life_num
+
         if self.level == 20:
             self.general_life_num = self.life_num + self.cr_num + self.cd_num
             self.general_atk_num = self.atk_num + self.cr_num + self.cd_num
@@ -405,7 +410,7 @@ class Artifact(object):
 
 
 def deal_json_mona():
-    with open(r"C:\Users\Maxwell\Desktop\Genshin\Data\artifacts.genshinart.json", 'r', encoding='utf-8') as mona:
+    with open(r"C:\Users\Maxwell\Desktop\Genshin\GenshinData\artifacts.genshinart.json", 'r', encoding='utf-8') as mona:
         x = json.load(mona)
 
     position_list = ['flower', 'feather', 'sand', 'cup', 'head']
@@ -436,7 +441,7 @@ def deal_json_mona():
 
 
 def output():
-    f1 = open(r"C:\Users\Maxwell\Desktop\Genshin\Data\artifacts.csv", 'w')
+    f1 = open(r"C:\Users\Maxwell\Desktop\Genshin\GenshinData\artifacts.csv", 'w')
     f2 = open(r"C:\Users\Maxwell\Desktop\Genshin\GenshinCalculator\cmake-build-debug\artifacts.txt", 'w')
     print('name,position,main_type,main_value,vice_type1,vice_value1,vice_type2,vice_value2,vice_type3,vice_value3,vice_type4,vice_value4,life_num,atk_num,def_num,em_num,er_num,'
           'cr_num,cd_num,general_life_num,general_atk_num,general_num_em,general_num_er,useful_type,general_react_num', file=f1)
