@@ -100,199 +100,199 @@ class Artifact(object):
         # Vice_type4_match = 'none'
 
         if self.main_type == 'lifeStatic':
-            self.main_type = 'hp'
+            self.main_type = '生命值'
         if self.vice_type1 == 'lifeStatic':
             self.life_num += (self.vice_value1 / life_base) / 0.05
-            self.vice_type1 = 'hp'
+            self.vice_type1 = '生命值'
             # Vice_type1_match = 'lifeStatic'
         if self.vice_type2 == 'lifeStatic':
             self.life_num += (self.vice_value2 / life_base) / 0.05
-            self.vice_type2 = 'hp'
+            self.vice_type2 = '生命值'
             # Vice_type2_match = 'lifeStatic'
         if self.vice_type3 == 'lifeStatic':
             self.life_num += (self.vice_value3 / life_base) / 0.05
-            self.vice_type3 = 'hp'
+            self.vice_type3 = '生命值'
             # Vice_type3_match = 'lifeStatic'
         if self.vice_type4 == 'lifeStatic':
             self.life_num += (self.vice_value4 / life_base) / 0.05
-            self.vice_type4 = 'hp'
+            self.vice_type4 = '生命值'
             # Vice_type4_match = 'lifeStatic'
 
         if self.main_type == 'lifePercentage':
-            self.main_type = 'hp%'
+            self.main_type = '生命值'
         if self.vice_type1 == 'lifePercentage':
             self.life_num += self.vice_value1 / 0.05
-            self.vice_type1 = 'hp%'
+            self.vice_type1 = '生命值%'
             # Vice_type1_match = 'lifePercentage'
         if self.vice_type2 == 'lifePercentage':
             self.life_num += self.vice_value2 / 0.05
-            self.vice_type2 = 'hp%'
+            self.vice_type2 = '生命值%'
             # Vice_type2_match = 'lifePercentage'
         if self.vice_type3 == 'lifePercentage':
             self.life_num += self.vice_value3 / 0.05
-            self.vice_type3 = 'hp%'
+            self.vice_type3 = '生命值%'
             # Vice_type3_match = 'lifePercentage'
         if self.vice_type4 == 'lifePercentage':
             self.life_num += self.vice_value4 / 0.05
-            self.vice_type4 = 'hp%'
+            self.vice_type4 = '生命值%'
             # Vice_type4_match = 'lifePercentage'
 
         if self.main_type == 'attackStatic':
-            self.main_type = 'atk'
+            self.main_type = '攻击力'
         if self.vice_type1 == 'attackStatic':
             self.atk_num += (self.vice_value1 / atk_base) / 0.05
-            self.vice_type1 = 'atk'
+            self.vice_type1 = '攻击力'
             # Vice_type1_match = 'attackStatic'
         if self.vice_type2 == 'attackStatic':
             self.atk_num += (self.vice_value2 / atk_base) / 0.05
-            self.vice_type2 = 'atk'
+            self.vice_type2 = '攻击力'
             # Vice_type2_match = 'attackStatic'
         if self.vice_type3 == 'attackStatic':
             self.atk_num += (self.vice_value3 / atk_base) / 0.05
-            self.vice_type3 = 'atk'
+            self.vice_type3 = '攻击力'
             # Vice_type3_match = 'attackStatic'
         if self.vice_type4 == 'attackStatic':
             self.atk_num += (self.vice_value4 / atk_base) / 0.05
-            self.vice_type4 = 'atk'
+            self.vice_type4 = '攻击力'
             # Vice_type4_match = 'attackStatic'
 
         if self.main_type == 'attackPercentage':
-            self.main_type = 'atk%'
+            self.main_type = '攻击力'
         if self.vice_type1 == 'attackPercentage':
             self.atk_num += self.vice_value1 / 0.05
-            self.vice_type1 = 'atk%'
+            self.vice_type1 = '攻击力%'
             # Vice_type1_match = 'attackPercentage'
         if self.vice_type2 == 'attackPercentage':
             self.atk_num += self.vice_value2 / 0.05
-            self.vice_type2 = 'atk%'
+            self.vice_type2 = '攻击力%'
             # Vice_type2_match = 'attackPercentage'
         if self.vice_type3 == 'attackPercentage':
             self.atk_num += self.vice_value3 / 0.05
-            self.vice_type3 = 'atk%'
+            self.vice_type3 = '攻击力%'
             # Vice_type3_match = 'attackPercentage'
         if self.vice_type4 == 'attackPercentage':
             self.atk_num += self.vice_value4 / 0.05
-            self.vice_type4 = 'atk%'
+            self.vice_type4 = '攻击力%'
             # Vice_type4_match = 'attackPercentage'
 
         if self.main_type == 'defendStatic':
-            self.main_type = 'def'
+            self.main_type = '防御力'
         if self.vice_type1 == 'defendStatic':
             self.def_num += (self.vice_value1 / def_base) / 0.062
-            self.vice_type1 = 'def'
+            self.vice_type1 = '防御力'
             # Vice_type1_match = 'defendStatic'
         if self.vice_type2 == 'defendStatic':
             self.def_num += (self.vice_value2 / def_base) / 0.062
-            self.vice_type2 = 'def'
+            self.vice_type2 = '防御力'
             # Vice_type2_match = 'defendStatic'
         if self.vice_type3 == 'defendStatic':
             self.def_num += (self.vice_value3 / def_base) / 0.062
-            self.vice_type3 = 'def'
+            self.vice_type3 = '防御力'
             # Vice_type3_match = 'defendStatic'
         if self.vice_type4 == 'defendStatic':
             self.def_num += (self.vice_value4 / def_base) / 0.062
-            self.vice_type4 = 'def'
+            self.vice_type4 = '防御力'
             # Vice_type4_match = 'defendStatic'
 
         if self.main_type == 'defendPercentage':
-            self.main_type = 'def%'
+            self.main_type = '防御力'
         if self.vice_type1 == 'defendPercentage':
             self.def_num += self.vice_value1 / 0.062
-            self.vice_type1 = 'def%'
+            self.vice_type1 = '防御力%'
             # Vice_type1_match = 'defendPercentage'
         if self.vice_type2 == 'defendPercentage':
             self.def_num += self.vice_value2 / 0.062
-            self.vice_type2 = 'def%'
+            self.vice_type2 = '防御力%'
             # Vice_type2_match = 'defendPercentage'
         if self.vice_type3 == 'defendPercentage':
             self.def_num += self.vice_value3 / 0.062
-            self.vice_type3 = 'def%'
+            self.vice_type3 = '防御力%'
             # Vice_type3_match = 'defendPercentage'
         if self.vice_type4 == 'defendPercentage':
             self.def_num += self.vice_value4 / 0.062
-            self.vice_type4 = 'def%'
+            self.vice_type4 = '防御力%'
             # Vice_type4_match = 'defendPercentage'
 
         if self.main_type == 'elementalMastery':
-            self.main_type = 'em'
+            self.main_type = '元素精通'
         if self.vice_type1 == 'elementalMastery':
             self.em_num += self.vice_value1 / 20
-            self.vice_type1 = 'em'
+            self.vice_type1 = '元素精通'
             # Vice_type1_match = 'elementalMastery'
         if self.vice_type2 == 'elementalMastery':
             self.em_num += self.vice_value2 / 20
-            self.vice_type2 = 'em'
+            self.vice_type2 = '元素精通'
             # Vice_type2_match = 'elementalMastery'
         if self.vice_type3 == 'elementalMastery':
             self.em_num += self.vice_value3 / 20
-            self.vice_type3 = 'em'
+            self.vice_type3 = '元素精通'
             # Vice_type3_match = 'elementalMastery'
         if self.vice_type4 == 'elementalMastery':
             self.em_num += self.vice_value4 / 20
-            self.vice_type4 = 'em'
+            self.vice_type4 = '元素精通'
             # Vice_type4_match = 'elementalMastery'
 
         if self.main_type == 'recharge':
-            self.main_type = 'er%'
+            self.main_type = '元素充能效率'
         if self.vice_type1 == 'recharge':
             self.er_num += self.vice_value1 / 0.055
-            self.vice_type1 = 'er%'
+            self.vice_type1 = '元素充能效率'
             # Vice_type1_match = 'recharge'
         if self.vice_type2 == 'recharge':
             self.er_num += self.vice_value2 / 0.055
-            self.vice_type2 = 'er%'
+            self.vice_type2 = '元素充能效率'
             # Vice_type2_match = 'recharge'
         if self.vice_type3 == 'recharge':
             self.er_num += self.vice_value3 / 0.055
-            self.vice_type3 = 'er%'
+            self.vice_type3 = '元素充能效率'
             # Vice_type3_match = 'recharge'
         if self.vice_type4 == 'recharge':
             self.er_num += self.vice_value4 / 0.055
-            self.vice_type4 = 'er%'
+            self.vice_type4 = '元素充能效率'
             # Vice_type4_match = 'recharge'
 
         if self.main_type == 'critical':
-            self.main_type = 'cr%'
+            self.main_type = '暴击率'
         if self.vice_type1 == 'critical':
             self.cr_num += self.vice_value1 / 0.033
-            self.vice_type1 = 'cr%'
+            self.vice_type1 = '暴击率'
             # Vice_type1_match = 'critical'
         if self.vice_type2 == 'critical':
             self.cr_num += self.vice_value2 / 0.033
-            self.vice_type2 = 'cr%'
+            self.vice_type2 = '暴击率'
             # Vice_type2_match = 'critical'
         if self.vice_type3 == 'critical':
             self.cr_num += self.vice_value3 / 0.033
-            self.vice_type3 = 'cr%'
+            self.vice_type3 = '暴击率'
             # Vice_type3_match = 'critical'
         if self.vice_type4 == 'critical':
             self.cr_num += self.vice_value4 / 0.033
-            self.vice_type4 = 'cr%'
+            self.vice_type4 = '暴击率'
             # Vice_type4_match = 'critical'
 
         if self.main_type == 'criticalDamage':
-            self.main_type = 'cd%'
+            self.main_type = '暴击伤害'
         if self.vice_type1 == 'criticalDamage':
             self.cd_num += self.vice_value1 / 0.066
-            self.vice_type1 = 'cd%'
+            self.vice_type1 = '暴击伤害'
             # Vice_type1_match = 'criticalDamage'
         if self.vice_type2 == 'criticalDamage':
             self.cd_num += self.vice_value2 / 0.066
-            self.vice_type2 = 'cd%'
+            self.vice_type2 = '暴击伤害'
             # Vice_type2_match = 'criticalDamage'
         if self.vice_type3 == 'criticalDamage':
             self.cd_num += self.vice_value3 / 0.066
-            self.vice_type3 = 'cd%'
+            self.vice_type3 = '暴击伤害'
             # Vice_type3_match = 'criticalDamage'
         if self.vice_type4 == 'criticalDamage':
             self.cd_num += self.vice_value4 / 0.066
-            self.vice_type4 = 'cd%'
+            self.vice_type4 = '暴击伤害'
             # Vice_type4_match = 'criticalDamage'
 
         if self.main_type == 'cureEffect':
-            self.main_type = 'cure%'
+            self.main_type = '治疗加成'
         if 'Bonus' in self.main_type:
-            self.main_type = self.main_type.replace('Bonus', '%')
+            self.main_type = self.main_type.replace('Bonus', '伤害加成')
 
         # if Vice_type1_match == 'none':
         #     print(self.Vice_type1)
@@ -305,10 +305,12 @@ class Artifact(object):
 
     def simple_judge(self):
         base = 0
-        if self.main_type == 'hp%':
+        if self.main_type == '生命值':
             self.atk_num = -self.atk_num
-        if self.main_type == 'atk%':
+            self.def_num = -self.def_num
+        elif self.main_type == '攻击力':
             self.life_num = -self.life_num
+            self.def_num = -self.def_num
 
         if self.level == 20:
             self.general_life_num = self.life_num + self.cr_num + self.cd_num
@@ -372,7 +374,7 @@ class Artifact(object):
                     else:
                         return 'no'
             elif self.position == 3:
-                if self.main_type == 'def%':
+                if self.main_type == '防御力':
                     return 'no'
                 else:
                     if self.cr_num > 0 or self.cd_num > 0:
@@ -380,7 +382,7 @@ class Artifact(object):
                     else:
                         return 'no'
             elif self.position == 4:
-                if self.main_type == 'life%' or self.main_type == 'atk%' or self.main_type == 'def%':
+                if self.main_type == '生命值' or self.main_type == '攻击力' or self.main_type == '防御力':
                     return 'no'
                 else:
                     if self.cr_num > 0 or self.cd_num > 0:
@@ -388,14 +390,14 @@ class Artifact(object):
                     else:
                         return 'no'
             else:
-                if self.main_type == 'life%' or self.main_type == 'atk%' or self.main_type == 'def%':
+                if self.main_type == '生命值' or self.main_type == '攻击力' or self.main_type == '防御力':
                     return 'no'
-                elif self.main_type == 'em':
+                elif self.main_type == '元素精通':
                     if self.er_num > 0:
                         return 'yes'
                     else:
                         return 'no'
-                elif self.main_type == 'cure%':
+                elif self.main_type == '治疗加成':
                     if self.atk_num > 0.5 or self.life_num > 0.5:
                         return 'yes'
                     else:
