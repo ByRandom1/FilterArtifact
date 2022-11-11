@@ -5,6 +5,8 @@ atk_base = 950
 life_base = 15000
 def_base = 800
 
+filepath_mode = "MAC"
+
 
 class Artifact(object):
     def __init__(self, name, position, main_type, main_value, vice_type1, vice_value1, vice_type2, vice_value2,
@@ -32,12 +34,7 @@ class Artifact(object):
         self.cd_num = 0
         self.cal_entries()
 
-        self.general_life_num = 0
-        self.general_atk_num = 0
-        self.general_num_em = 0
-        self.general_num_er = 0
-        self.general_react_num = 0
-        self.useful_type = self.simple_judge()
+        self.result_life, self.result_atk = self.simple_judge()
 
     def name_convert(self, name):
         if name == 'blizzardStrayer':
@@ -289,10 +286,25 @@ class Artifact(object):
             self.vice_type4 = '暴击伤害'
             # Vice_type4_match = 'criticalDamage'
 
+        if self.main_type == "waterBonus":
+            self.main_type == "水伤害加成"
+        elif self.main_type == "iceBonus":
+            self.main_type == "冰伤害加成"
+        elif self.main_type == "fireBonus":
+            self.main_type == "火伤害加成"
+        elif self.main_type == "thunderBonus":
+            self.main_type == "雷伤害加成"
+        elif self.main_type == "windBonus":
+            self.main_type == "风伤害加成"
+        elif self.main_type == "rockBonus":
+            self.main_type == "岩伤害加成"
+        elif self.main_type == "dendroBonus":
+            self.main_type == "草伤害加成"
+        elif self.main_type == "physicalBonus":  # ?
+            self.main_type == "物理伤害加成"
+
         if self.main_type == 'cureEffect':
             self.main_type = '治疗加成'
-        if 'Bonus' in self.main_type:
-            self.main_type = self.main_type.replace('Bonus', '伤害加成')
 
         # if Vice_type1_match == 'none':
         #     print(self.Vice_type1)
@@ -304,21 +316,16 @@ class Artifact(object):
         #     print(self.Vice_type4)
 
     def simple_judge(self):
-        base = 0
-        if self.main_type == '生命值':
-            self.atk_num = -self.atk_num
-            self.def_num = -self.def_num
-        elif self.main_type == '攻击力':
-            self.life_num = -self.life_num
-            self.def_num = -self.def_num
-
         if self.level == 20:
-            self.general_life_num = self.life_num + self.cr_num + self.cd_num
-            self.general_atk_num = self.atk_num + self.cr_num + self.cd_num
-            self.general_num_em = max(self.life_num, self.atk_num) + self.em_num / 2 + self.cr_num + self.cd_num
-            self.general_num_er = max(self.life_num, self.atk_num) + self.er_num / 2 + self.cr_num + self.cd_num
+            life_num = self.life_num + self.cr_num + self.cd_num
+            life_em_num = self.life_num + self.em_num / 2 + self.cr_num + self.cd_num
+            life_er_num = self.life_num + self.er_num / 2 + self.cr_num + self.cd_num
+            life_react_num = self.life_num + self.em_num + self.cr_num + self.cd_num
 
-            self.general_react_num = max(self.life_num, self.atk_num) + self.em_num + self.cr_num + self.cd_num
+            atk_num = self.atk_num + self.cr_num + self.cd_num
+            atk_em_num = self.atk_num + self.em_num / 2 + self.cr_num + self.cd_num
+            atk_er_num = self.atk_num + self.er_num / 2 + self.cr_num + self.cd_num
+            atk_react_num = self.atk_num + self.em_num + self.cr_num + self.cd_num
 
             if self.position == 1 or self.position == 2:
                 base = 6.5
@@ -327,93 +334,90 @@ class Artifact(object):
             else:
                 base = 5
 
-            if self.general_life_num >= base and self.general_atk_num >= base:
-                return 'all_all'
-            elif self.general_life_num > self.general_atk_num:
-                if self.general_life_num >= base:  # life > base > atk
-                    return 'life_all'
-                elif self.general_num_em >= base and self.general_num_er >= base:  # em/er > base > life > atk
-                    return 'life_em/er'
-                elif self.general_num_em >= base:  # em > base > er > life > atk
-                    return 'life_em'
-                elif self.general_num_er >= base:  # er > base > em > life > atk
-                    return 'life_er'
-                else:  # base > em/er > life > atk
-                    return 'none'
-            elif self.general_atk_num > self.general_life_num:
-                if self.general_atk_num >= base:  # atk > base > life
-                    return 'atk_all'
-                elif self.general_num_em >= base and self.general_num_er >= base:  # em/er > base > atk > life
-                    return 'atk_em/er'
-                elif self.general_num_em >= base:  # em > base > er > atk > life
-                    return 'atk_em'
-                elif self.general_num_er >= base:  # er > base > em > atk > life
-                    return 'atk_er'
-                else:  # base > em/er > atk > life
-                    return 'none'
-            else:  # base > life/atk
-                if self.general_num_em >= base and self.general_num_er >= base:  # em/er > base > atk/life
-                    return 'all_em/er'
-                elif self.general_num_em >= base:  # em > base > er > atk/life
-                    return 'all_em'
-                elif self.general_num_er >= base:  # er > base > em > atk/life
-                    return 'all_er'
-                else:  # base > em/er > atk/life
-                    return 'none'
-        elif self.level == 0:
-            if self.position == 1 or self.position == 2:
-                if self.vice_type4 == 'none':
-                    if self.cr_num > 0 or self.cd_num > 0:
-                        return 'yes'
-                    else:
-                        return 'no'
-                else:
-                    if (self.cr_num > 0 and self.cd_num > 0) or (self.cr_num > 0 and self.life_num > 0.5) or (self.cr_num > 0 and self.atk_num > 0.5) or (
-                            self.life_num > 0.5 and self.cd_num > 0) or (self.atk_num > 0.5 and self.cd_num > 0):
-                        return 'yes'
-                    else:
-                        return 'no'
-            elif self.position == 3:
-                if self.main_type == '防御力':
-                    return 'no'
-                else:
-                    if self.cr_num > 0 or self.cd_num > 0:
-                        return 'yes'
-                    else:
-                        return 'no'
-            elif self.position == 4:
-                if self.main_type == '生命值' or self.main_type == '攻击力' or self.main_type == '防御力':
-                    return 'no'
-                else:
-                    if self.cr_num > 0 or self.cd_num > 0:
-                        return 'yes'
-                    else:
-                        return 'no'
-            else:
-                if self.main_type == '生命值' or self.main_type == '攻击力' or self.main_type == '防御力':
-                    return 'no'
-                elif self.main_type == '元素精通':
-                    if self.er_num > 0:
-                        return 'yes'
-                    else:
-                        return 'no'
-                elif self.main_type == '治疗加成':
-                    if self.atk_num > 0.5 or self.life_num > 0.5:
-                        return 'yes'
-                    else:
-                        return 'no'
-                else:
-                    if self.cr_num > 0 or self.cd_num > 0 or self.atk_num > 0.5 or self.life_num > 0.5:
-                        return 'yes'
-                    else:
-                        return 'no'
-        else:
-            return 'no'
+            result_life = 'life'
+            if life_em_num >= base:
+                result_life += '_em'
+            if life_er_num >= base:
+                result_life += '_er'
+            if life_react_num >= base:
+                result_life += '_react'
+            if life_num >= base:
+                result_life = 'life_all'
+            if result_life == 'life':
+                result_life = 'none'
+
+            result_atk = 'atk'
+            if atk_em_num >= base:
+                result_atk += '_em'
+            elif atk_er_num >= base:
+                result_atk += '_er'
+            elif atk_react_num >= base:
+                result_atk += '_react'
+            if atk_num >= base:
+                result_atk = 'atk_all'
+            if result_atk == 'atk':
+                result_atk = 'none'
+
+            return result_life, result_atk
+
+        # elif self.level == 0:
+        #     if self.position == 1 or self.position == 2:
+        #         if self.vice_type4 == 'none':
+        #             if self.cr_num > 0 or self.cd_num > 0:
+        #                 return 'yes'
+        #             else:
+        #                 return 'no'
+        #         else:
+        #             if (self.cr_num > 0 and self.cd_num > 0) or (self.cr_num > 0 and self.life_num > 0.5) or (self.cr_num > 0 and self.atk_num > 0.5) or (
+        #                     self.life_num > 0.5 and self.cd_num > 0) or (self.atk_num > 0.5 and self.cd_num > 0):
+        #                 return 'yes'
+        #             else:
+        #                 return 'no'
+        #     elif self.position == 3:
+        #         if self.main_type == '防御力':
+        #             return 'no'
+        #         else:
+        #             if self.cr_num > 0 or self.cd_num > 0:
+        #                 return 'yes'
+        #             else:
+        #                 return 'no'
+        #     elif self.position == 4:
+        #         if self.main_type == '生命值' or self.main_type == '攻击力' or self.main_type == '防御力':
+        #             return 'no'
+        #         else:
+        #             if self.cr_num > 0 or self.cd_num > 0:
+        #                 return 'yes'
+        #             else:
+        #                 return 'no'
+        #     else:
+        #         if self.main_type == '生命值' or self.main_type == '攻击力' or self.main_type == '防御力':
+        #             return 'no'
+        #         elif self.main_type == '元素精通':
+        #             if self.er_num > 0:
+        #                 return 'yes'
+        #             else:
+        #                 return 'no'
+        #         elif self.main_type == '治疗加成':
+        #             if self.atk_num > 0.5 or self.life_num > 0.5:
+        #                 return 'yes'
+        #             else:
+        #                 return 'no'
+        #         else:
+        #             if self.cr_num > 0 or self.cd_num > 0 or self.atk_num > 0.5 or self.life_num > 0.5:
+        #                 return 'yes'
+        #             else:
+        #                 return 'no'
+        # else:
+        #     return 'no'
 
 
 def deal_json_mona():
-    with open(r"C:\Users\Maxwell\Desktop\Genshin\GenshinData\artifacts.genshinart.json", 'r', encoding='utf-8') as mona:
-        x = json.load(mona)
+    if filepath_mode == "WIN":
+        with open(r"C:\Users\Maxwell\Desktop\Genshin\GenshinData\artifacts.genshinart.json", 'r', encoding='utf-8') as mona:
+            x = json.load(mona)
+    elif filepath_mode == "MAC":
+        with open(r"/Users/maxwell/Downloads/资料/游戏资料/Genshin/Data/artifacts.genshinart.json", 'r', encoding='utf-8') as mona:
+            x = json.load(mona)
 
     position_list = ['flower', 'feather', 'sand', 'cup', 'head']
     for index in range(5):
@@ -443,18 +447,21 @@ def deal_json_mona():
 
 
 def output():
-    f1 = open(r"C:\Users\Maxwell\Desktop\Genshin\GenshinData\artifacts.csv", 'w')
-    f2 = open(r"C:\Users\Maxwell\Desktop\Genshin\GenshinCalculator\cmake-build-debug\artifacts.txt", 'w')
+    if filepath_mode == "WIN":
+        f1 = open(r"C:\Users\Maxwell\Desktop\Genshin\GenshinData\artifacts.csv", 'w')
+        f2 = open(r"C:\Users\Maxwell\Desktop\Genshin\GenshinCalculator\cmake-build-debug\artifacts.txt", 'w')
+    elif filepath_mode == "MAC":
+        f1 = open(r"/Users/maxwell/Downloads/资料/游戏资料/Genshin/Data/artifacts.csv", 'w')
+        f2 = open(r"/Users/maxwell/Downloads/资料/游戏资料/Genshin/GenshinCalculator/cmake-build-debug/artifacts.txt", 'w')
     print('name,position,main_type,main_value,vice_type1,vice_value1,vice_type2,vice_value2,vice_type3,vice_value3,vice_type4,vice_value4,life_num,atk_num,def_num,em_num,er_num,'
-          'cr_num,cd_num,general_life_num,general_atk_num,general_num_em,general_num_er,useful_type,general_react_num', file=f1)
+          'cr_num,cd_num,result_life,result_atk', file=f1)
     for d in data:
-        print('%s,%s,%s,%.3f,%s,%.3f,%s,%.3f,%s,%.3f,%s,%.3f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%s,%.1f'
+        print('%s,%s,%s,%.3f,%s,%.3f,%s,%.3f,%s,%.3f,%s,%.3f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%s,%s'
               % (d.name, d.position, d.main_type, d.main_value, d.vice_type1, d.vice_value1, d.vice_type2, d.vice_value2, d.vice_type3, d.vice_value3, d.vice_type4, d.vice_value4,
-                 d.life_num, d.atk_num, d.def_num, d.em_num, d.er_num, d.cr_num, d.cd_num, d.general_life_num, d.general_atk_num, d.general_num_em, d.general_num_er,
-                 d.useful_type, d.general_react_num), file=f1)
+                 d.life_num, d.atk_num, d.def_num, d.em_num, d.er_num, d.cr_num, d.cd_num, d.result_life, d.result_atk), file=f1)
         if d.level == 20:
-            print('%s %s %s %.3f %s %.3f %s %.3f %s %.3f %s %.3f' % (d.name, d.position, d.main_type, d.main_value, d.vice_type1, d.vice_value1, d.vice_type2, d.vice_value2,
-                                                                     d.vice_type3, d.vice_value3, d.vice_type4, d.vice_value4), file=f2)
+            print('%d %s %s %s %.3f %s %.3f %s %.3f %s %.3f none' % (d.position, d.name, d.main_type, d.vice_type1, d.vice_value1, d.vice_type2,
+                                                                     d.vice_value2, d.vice_type3, d.vice_value3, d.vice_type4, d.vice_value4), file=f2)
 
 
 if __name__ == "__main__":
