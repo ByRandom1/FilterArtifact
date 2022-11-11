@@ -286,22 +286,22 @@ class Artifact(object):
             self.vice_type4 = '暴击伤害'
             # Vice_type4_match = 'criticalDamage'
 
-        if self.main_type == "waterBonus":
-            self.main_type == "水伤害加成"
-        elif self.main_type == "iceBonus":
-            self.main_type == "冰伤害加成"
-        elif self.main_type == "fireBonus":
-            self.main_type == "火伤害加成"
-        elif self.main_type == "thunderBonus":
-            self.main_type == "雷伤害加成"
-        elif self.main_type == "windBonus":
-            self.main_type == "风伤害加成"
-        elif self.main_type == "rockBonus":
-            self.main_type == "岩伤害加成"
-        elif self.main_type == "dendroBonus":
-            self.main_type == "草伤害加成"
-        elif self.main_type == "physicalBonus":  # ?
-            self.main_type == "物理伤害加成"
+        if self.main_type == 'waterBonus':
+            self.main_type = '水伤害加成'
+        elif self.main_type == 'iceBonus':
+            self.main_type = '冰伤害加成'
+        elif self.main_type == 'fireBonus':
+            self.main_type = '火伤害加成'
+        elif self.main_type == 'thunderBonus':
+            self.main_type = '雷伤害加成'
+        elif self.main_type == 'windBonus':
+            self.main_type = '风伤害加成'
+        elif self.main_type == 'rockBonus':
+            self.main_type = '岩伤害加成'
+        elif self.main_type == 'dendroBonus':
+            self.main_type = '草伤害加成'
+        elif self.main_type == 'physicalBonus':  # ?
+            self.main_type = '物理伤害加成'
 
         if self.main_type == 'cureEffect':
             self.main_type = '治疗加成'
@@ -318,14 +318,14 @@ class Artifact(object):
     def simple_judge(self):
         if self.level == 20:
             life_num = self.life_num + self.cr_num + self.cd_num
-            life_em_num = self.life_num + self.em_num / 2 + self.cr_num + self.cd_num
-            life_er_num = self.life_num + self.er_num / 2 + self.cr_num + self.cd_num
-            life_react_num = self.life_num + self.em_num + self.cr_num + self.cd_num
+            life_em_num = life_num + self.em_num / 2
+            life_er_num = life_num + self.er_num / 2
+            life_react_num = life_num + self.em_num
 
             atk_num = self.atk_num + self.cr_num + self.cd_num
-            atk_em_num = self.atk_num + self.em_num / 2 + self.cr_num + self.cd_num
-            atk_er_num = self.atk_num + self.er_num / 2 + self.cr_num + self.cd_num
-            atk_react_num = self.atk_num + self.em_num + self.cr_num + self.cd_num
+            atk_em_num = atk_num + self.em_num / 2
+            atk_er_num = atk_num + self.er_num / 2
+            atk_react_num = atk_num + self.em_num
 
             if self.position == 1 or self.position == 2:
                 base = 6.5
